@@ -1,0 +1,113 @@
+/****************************
+body + background adjustments
+*****************************/
+
+body {
+    margin: 0px;
+}
+
+#background {
+    background-image: url(background-gradient.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/**********************************
+high score button/list/ adjustments
+***********************************/
+
+#highScoresClick {
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+    background-color: rgb(255, 255, 255, 0.0);
+    border: rgb(255, 255, 255, 0.0);
+}
+
+.highScoresList {
+    float: left;
+    display: none;
+    background-color: rgb(253, 252, 252, 0.0);
+    width: fit-content;
+    padding-left: -10px;
+    padding-right: 20px;
+    margin-left: 30px;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: auto;
+    margin-top: 150px;
+}
+
+#highScoresArchive {
+    color: white;
+    display: none;
+    text-align: center;
+    font-family: 'Work Sans', sans-serif;
+}
+
+/*******************************
+time left: countdown adjustments
+********************************/
+
+#timeLeft {
+    margin-left: 75%;
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 20px;
+    float: left;
+    visibility: hidden;
+}
+
+/*************************************
+welcome section/start game adjustments
+**************************************/
+
+.welcomeSection {
+    width: 800px;
+    height: 500px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgb(112, 110, 110, 0.0);
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+}
+
+/*************************************
+question+answer section adjustments
+**************************************/
+
+.questionSection {
+    display: none;
+    background-color: white;
+    width: 800px;
+    margin-top: 160px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background: rgb(112, 110, 110, 0.0);
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+    
+}
+
+/*******************************************
+enter your initials/submit score adjustments
+********************************************/
+
+.initialsSection {
+    display: none;
+    width: 600px;
+    height: 75px;
+    margin-top: 140px;
+    margin-right: auto;
+    margin-left: auto;
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+    text-align: center;
+}
+
+#initialsInput {
+    text-align: center;
+}
+
