@@ -19,7 +19,7 @@ var thirdChoice = document.querySelector("#thirdChoice");
 var fourthChoice = document.querySelector("#fourthChoice");
 var timeRemaining = 90;
 var currentQuestion = 0;
-
+var finalScoresDisplayed = [];
 
 // here is where the time function exists, it is initially invisible. 
 // it is activated when the user clicks start and calls on the startTimer function.
@@ -104,7 +104,7 @@ highScoresClick.addEventListener("click", function (event) {
     if (highScoresList.style.display === "none") {
         highScoresList.style.display = "block";
         highScoresArchive.style.display = "block";
-
+        storePlayerInfo();
     } else {
         highScoresList.style.display = "none";
         highScoresArchive.style.display = "none";
@@ -123,26 +123,32 @@ submitButtonClick.addEventListener("click", function (event) {
 
     // users score and intitials added here via JSON stringify.
 
-    localStorage.setItem("initials", JSON.stringify(usersInitials));
-    localStorage.setItem("time", JSON.stringify("With " + usersTime + " seconds remaining."));
-    storePlayerInfo();
+    finalScoresDisplayed.push({ "initials": usersInitials, "time": usersTime });
+    localStorage.setItem("final score", JSON.stringify(finalScoresDisplayed));
     initialsSection.style.display = "none";
     welcomeSection.style.display = "block";
     timeLeft.style.visibility = "hidden";
     timeRemaining = 90;
     timeLeft.textContent = "Timer: 90";
+    highScoresList.style.display = "none";
+    highScoresArchive.style.display = "none";
 })
 
 // user score information is archived on the page along with intials
 // via JSON.parse
 
-
 function storePlayerInfo() {
-    var usersInitials = localStorage.getItem("initials");
-    var usersTime = localStorage.getItem("time");
-    var li = document.createElement("li");
-    li.innerHTML = JSON.parse(usersInitials) + " : " + usersTime;
-    highScoresArchive.append(li);
+    highScoresArchive.innerHTML = "";
+    finalScoresDisplayed = JSON.parse(localStorage.getItem("final score"));
+
+    //JSON.parse removes local storage information.
+    // the information is then placed on the high scores list
+    //each new score is added to the list.
+
+    console.log(finalScoresDisplayed);
+    for (var i = 0; i < finalScoresDisplayed.length; i++) {
+        var li = document.createElement("li");
+        li.innerHTML = (finalScoresDisplayed[i].initials) + " : " + "Finished with " + finalScoresDisplayed[i].time + " seconds left!";
+        highScoresArchive.append(li);
+    }
 }
-
-
