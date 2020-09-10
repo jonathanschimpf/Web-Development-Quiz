@@ -7,6 +7,7 @@
 
 <head>
 
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Development Quiz: JavaScript.</title>
@@ -33,6 +34,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
 
+
 </head>
 
 
@@ -41,38 +43,38 @@
 
 <body id="background">
 
-    <!-- wrapper for all content -->
 
-    <main class="wrapper">
+    <!-- top left / top right of page: high scores archive and the timer that counts down -->
 
-        <!--navbar containing the high scores archive and the timer-->
+    <div class="float-left btn btn-primary" id="highScoresClick" role="button">High Scores</div>
 
-        <section class="container-fluid">
-            <nav class="navbar navbar-expand-lg">
-                <a class="btn btn-primary btn-lg" id="highScoresClick" role="button">High Scores</a>
-                <a id="timeLeft">Timer: 90</a>
-            </nav>
-        </section>
+    <div class="float-right" id="timeLeft">Timer: 90</div>
 
-        <!--high scores list that is initially hidden and presented upon clicking (revisit to make it's own .html page)-->
+    <!--high scores list that is initially hidden and presented upon clicking -->
 
-        <section class="highScoresList">
-            <ol id="highScoresArchive">
-                <h4>High Scores</h4>
-            </ol>
-        </section>
+    <section class="highScoresList">
+        <ol id="highScoresArchive">
+            <h4></h4>
+        </ol>
+    </section> 
 
-        <!-- page breaks for layout breathability -->
+    <!-- page breaks for layout breathability -->
 
-        <br>
-        <br>
-        <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
 
-        <!------------------------------------------>
+    <!------------------------------------------>
 
-        <!-- main welcome page section with title and start game functionality button in the form of a bootstrap jumbotron-->
+    <!-- main welcome page section with title and start game functionality button in the form of a bootstrap jumbotron-->
 
-        <section class="jumbotron welcomeSection">
+    <main class="jumbotron jumbotron-fluid" id="welcomeSection">
+        <div class="container-fluid">
             <h1 class="display-4">Web Development Quiz:</h1>
             <hr>
             <h1 class="display-4">JavaScript Edition.</h1>
@@ -82,24 +84,28 @@
             <p>Press the start button below to begin:</p>
             <br>
             <a class="btn btn-light" id="quizBeginsButton" role="button">Start</a>
-        </section>
+        </div>
+    </main>
 
-        <!-- questions section that is initially hidden and presented upon clicking the start button above (quizBeginsButton)-->
-        <!-- features four buttons with options that are directed to here via JavaScript with #id values-->
+    <!-- questions section that is initially hidden and presented upon clicking the start button above (quizBeginsButton)-->
+    <!-- features four buttons with options that are directed to here via JavaScript with #id values-->
 
-        <section class="questionSection">
+    <section class="container">
+        <div class="questionSection">
             <h2 id="presentQuestion">Question</h2>
             <br>
-            <section class="choiceButtons">
+            <div class="choiceButtons">
                 <button type="button" class="btn btn-light" id="firstChoice">Button1</button>
                 <button type="button" class="btn btn-light" id="secondChoice">Button2</button>
                 <button type="button" class="btn btn-light" id="thirdChoice">Button3</button>
                 <button type="button" class="btn btn-light" id="fourthChoice">Button4</button>
-            </section>
-        </section>
+            </div>
+        </div>
+    </section>
 
-        <!-- end of quiz section featuring a greeting letting you know how you did and allowing you to enter your inititals into local storage-->
+    <!-- end of quiz section featuring a greeting letting you know how you did and allowing you to enter your inititals into local storage-->
 
+    <section class="container">
         <form>
             <div class="form-group initialsSection">
                 <h2 id="endQuizGreeting"></h2>
@@ -109,13 +115,14 @@
                 <button type="button" class="btn btn-light submitButtonClick">Submit</button>
             </div>
         </form>
-
-    </main>
+    </section>
 
     <!-- links to the JavaScript functionality page and the array of questions page for the quiz -->
 
     <script src="questionsandanswers.js"></script>
     <script src="script.js"></script>
+
+
 </body>
 
 </html>

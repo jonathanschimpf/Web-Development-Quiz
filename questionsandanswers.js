@@ -5,7 +5,7 @@ var arrayOfQuestions = [
     {
         quizQuestion: "Inside which HTML element do we place the JavaScript?",
         potentialAnswers: ["<script>", "<javascript>", "<scripting", "<js>"],
-        correctAnswer: "<js>"
+        correctAnswer: "<script>"
     },
     {
         quizQuestion: "What event occurs when a user clicks on an HTML element?",

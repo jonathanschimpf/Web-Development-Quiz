@@ -1,3 +1,4 @@
+
 // ****** DECLARATION OF VARIABLES ******
 
 var quizBeginsButton = document.querySelector("#quizBeginsButton");
@@ -5,14 +6,13 @@ var highScoresArchive = document.querySelector("#highScoresArchive");
 var highScoresClick = document.querySelector("#highScoresClick");
 var highScoresList = document.querySelector(".highScoresList");
 var timeLeft = document.querySelector("#timeLeft");
-var welcomeSection = document.querySelector(".welcomeSection");
+var welcomeSection = document.querySelector("#welcomeSection");
 var questionSection = document.querySelector(".questionSection");
 var presentQuestion = document.querySelector("#presentQuestion");
 var endQuizGreeting = document.querySelector("#endQuizGreeting");
 var initialsSection = document.querySelector(".initialsSection");
 var initialsInput = document.querySelector("#initialsInput");
 var submitButtonClick = document.querySelector(".submitButtonClick");
-//
 var choiceButtons = document.querySelector(".choiceButtons");
 var firstChoice = document.querySelector("#firstChoice");
 var secondChoice = document.querySelector("#secondChoice");
@@ -21,38 +21,9 @@ var fourthChoice = document.querySelector("#fourthChoice");
 var timeRemaining = 90;
 var currentQuestion = 0;
 
-// functionality for the high scores archive when clicked.
-// archive is hidden until clicked, then displays results.
-
-highScoresClick.addEventListener("click", function (event) {
-    event.preventDefault();
-
-    if (highScoresList.style.display === "none") {
-        highScoresList.style.display = "block";
-        highScoresArchive.style.display = "block";
-    }
-    else {
-        highScoresList.style.display = "none";
-        highScoresArchive.style.display = "none";
-    }
-})
-
-// user score information is archived on the page along with intials
-// via storePlayerInfo function and JSON.parse feature
-
-function storePlayerInfo() {
-    var usersInitials = localStorage.getItem("initials");
-    var usersTime = localStorage.getItem("time");
-
-    //JSON.parse removes local storage information and places it on the page
-
-    var parse = document.createElement("parse");
-    parse.innerHTML = JSON.parse(usersInitials) + " : " + usersTime;
-    highScoresArchive.append(parse);
-}
 
 // here is where the time function exists, it is initially invisible. 
-// it is activated when the user clicks start and calls un the startTimer function.
+// it is activated when the user clicks start and calls on the startTimer function.
 // the timer beging at 90 seconds (timeRemaining), and counts down backwards.
 
 function startTimer() {
@@ -67,36 +38,18 @@ function startTimer() {
             var usersTime = timeRemaining;
             endQuizGreeting.textContent = ("You completed the quiz with " + usersTime + " seconds left!");
         }
+
+        if (timeRemaining <= 0) {
+            clearInterval(timerInterval);
+            endQuizGreeting.textContent = ("You completed the quiz with " + usersTime + " seconds left!");
+        }
     }, 1000);
 }
 
-// here is wheere the submit button functionality exists (submitButtonClick)..
-// once the user enters their intitals and clicks submit the score ititials are archived.
-// this allows visibility of the start screen again after submission (welcomeSection).
 
-submitButtonClick.addEventListener("click", function (event) {
-    event.preventDefault();
-    var usersTime = timeRemaining;
-    var usersInitials = initialsInput.value;
-
-    // users score and intitials added here via JSON stringify.
-
-    localStorage.setItem("initials", JSON.stringify(usersInitials));
-    localStorage.setItem("time", JSON.stringify(usersTime + " seconds"));
-    storePlayerInfo();
-    initialsSection.style.display = "none";
-    welcomeSection.style.display = "block";
-    timeLeft.style.visibility = "hidden";
-    timeRemaining = 90;
-    timeLeft.textContent = "Timer: 90";
-
-})
 
 // ****** QUIZ CONTENT ******
 
-// when the start button (quizBeginsButton) is clicked it calls on the startQuiz function
-
-quizBeginsButton.addEventListener("click", startQuiz);
 
 // this hides the welcomeSection menu page section and reveals the questions section (both within index.html)
 // questions are presented while starting the timer by calling on the startTimer and askQuestions functions.
@@ -108,7 +61,11 @@ function startQuiz() {
     currentQuestion = 0;
     startTimer();
     askQuestions();
-}
+};
+
+// when the start button (quizBeginsButton) is clicked it calls on the startQuiz function
+
+quizBeginsButton.addEventListener("click", startQuiz);
 
 // this function displays the first question object within the arrayOfQuestions array.
 // this loops through each one of the questions for the length of the arrayOfQuestions array.
@@ -134,6 +91,7 @@ choiceButtons.addEventListener("click", function (event) {
         if (event.target.textContent === arrayOfQuestions[currentQuestion].correctAnswer) {
             currentQuestion++;
             console.log("correct");
+
         }
         else {
             currentQuestion++;
@@ -143,3 +101,56 @@ choiceButtons.addEventListener("click", function (event) {
         askQuestions();
     }
 });
+
+
+// archive is hidden until clicked, then displays results.
+
+highScoresClick.addEventListener("click", function (event) {
+    event.preventDefault(); 
+
+    if (highScoresList.style.display === "none") {
+        highScoresList.style.display = "block";
+        highScoresArchive.style.display = "block";
+
+    }
+    else {
+        highScoresList.style.display = "none";
+        highScoresArchive.style.display = "none";
+
+    }
+})
+
+// here is where the submit button functionality exists (submitButtonClick)..
+// once the user enters their intitals and clicks submit the score ititials are archived.
+// this allows visibility of the start screen again after submission (welcomeSection).
+
+submitButtonClick.addEventListener("click", function (event) {
+    event.preventDefault();
+    var usersTime = timeRemaining;
+    var usersInitials = initialsInput.value;
+
+    // users score and intitials added here via JSON stringify.
+
+    localStorage.setItem("initials", JSON.stringify(usersInitials));
+    localStorage.setItem("time", JSON.stringify("With " + usersTime + " seconds remaining."));
+    storePlayerInfo();
+    initialsSection.style.display = "none";
+    welcomeSection.style.display = "block";
+    timeLeft.style.visibility = "hidden";
+    timeRemaining = 90;
+    timeLeft.textContent = "Timer: 90";
+})
+
+// user score information is archived on the page along with intials
+// via JSON.parse
+
+
+function storePlayerInfo() {
+    var usersInitials = localStorage.getItem("initials");
+    var usersTime = localStorage.getItem("time");
+    var li = document.createElement("li");
+    li.innerHTML = JSON.parse(usersInitials) + " : " + usersTime;
+    highScoresArchive.append(li);
+}
+
+
