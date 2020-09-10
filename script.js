@@ -1,4 +1,3 @@
-
 // ****** DECLARATION OF VARIABLES ******
 
 var quizBeginsButton = document.querySelector("#quizBeginsButton");
