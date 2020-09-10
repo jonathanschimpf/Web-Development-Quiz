@@ -78,41 +78,34 @@ function askQuestions() {
     firstChoice.textContent = arrayOfQuestions[currentQuestion].potentialAnswers[0];
     secondChoice.textContent = arrayOfQuestions[currentQuestion].potentialAnswers[1];
     thirdChoice.textContent = arrayOfQuestions[currentQuestion].potentialAnswers[2];
-    fourthChoice.textContent = arrayOfQuestions[currentQuestion].potentialAnswers[3];
+    fourthChoice.textContent = arrayOfQuestions[currentQuestion].potentialAnswers[3]
 }
 
 // user selects their choice via a button, logs if the answer is correct or wrong in the console 
 // calls back askQuestions function to advance to the next question after a selection is made
 
 choiceButtons.addEventListener("click", function (event) {
-    event.preventDefault();
     if (event.target.matches("button")) {
         if (event.target.textContent === arrayOfQuestions[currentQuestion].correctAnswer) {
             currentQuestion++;
-            console.log("correct");
 
-        }
-        else {
+        } else {
             currentQuestion++;
             timeRemaining = timeRemaining - 10;
-            console.log("wrong");
+
         }
         askQuestions();
     }
 });
 
-
 // archive is hidden until clicked, then displays results.
 
 highScoresClick.addEventListener("click", function (event) {
-    event.preventDefault(); 
-
     if (highScoresList.style.display === "none") {
         highScoresList.style.display = "block";
         highScoresArchive.style.display = "block";
 
-    }
-    else {
+    } else {
         highScoresList.style.display = "none";
         highScoresArchive.style.display = "none";
 
